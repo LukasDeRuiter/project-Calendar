@@ -33,5 +33,84 @@ html{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 2rem;
+    text-align: center;
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+}
 
+.previous{
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+.next{
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+.currentMonth{
+    font-size: 3rem;
+    font-weight: 400;
+    letter-spacing: 0.2rem;
+    margin-bottom: 1rem;
+}
+
+.currentDay{
+    font-size: 1.6rem;
+}
+
+.weekdays{
+    width: 100%;
+    height: 5rem;
+    padding: 0 0.4rem;
+    display: flex;
+    align-items: center;
+}
+
+.dayInTheWeek{
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+    width: calc(44.2rem / 7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+}
+
+.days{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.2rem;
+}
+
+.displayedDay{
+    font-size: 1.4rem;
+    margin: 0.3rem;
+    width: calc(40.2rem / 7);
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+    transition: background-color 0.2s;
+}
+
+.displayedDay:hover:not(.today){
+    background-color: #262626;
+    border: 0.2rem solid #777;
+    cursor: pointer;
+}
+
+.prev-days{
+    opacity: 0.5;
+}
+
+.next-days{
+    opacity: 0.5;
+}
+
+.today{
+    background-color: rgb(138, 39, 39);
 }
