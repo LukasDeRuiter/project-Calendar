@@ -85,7 +85,7 @@ html{
     padding: 0.2rem;
 }
 
-.displayedDay{
+.days div{
     font-size: 1.4rem;
     margin: 0.3rem;
     width: calc(40.2rem / 7);
@@ -97,7 +97,7 @@ html{
     transition: background-color 0.2s;
 }
 
-.displayedDay:hover:not(.today){
+.days div:hover:not(.today){
     background-color: #262626;
     border: 0.2rem solid #777;
     cursor: pointer;
