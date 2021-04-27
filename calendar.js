@@ -48,10 +48,10 @@ for(let i = firstDayIndex; i > 0; i--){
 
 for(let i = 1; i <= lastDay; i++){
     if(i === new Date().getDate() && date.getMonth() === new Date().getMonth()){
-        days += `<div class="today" id="day${i}">${i}</div>`;
+        days += `<div class="today monthDays" id="day${i}">${i}</div>`;
     }
     else{
-    days += `<div id="day${i}">${i}</div>`;
+    days += `<div class="monthDays" id="day${i}">${i}</div>`;
     }
 }
 
@@ -59,6 +59,14 @@ for(let i = 1; i <= nextDays; i++){
     days += `<div class="next-days">${i}</div>`;
     monthDays.innerHTML = days;
 }
+
+document.querySelectorAll('.monthDays').forEach(function(theDayUserClicked){
+    theDayUserClicked.addEventListener('click', function(){
+        console.log(theDayUserClicked.id);
+        console.log(date.getMonth());
+    });
+});
+
 }
 
 document.getElementById('leftBtnID').addEventListener('click', function(){
@@ -103,3 +111,4 @@ console.log(lastDay);
 }
 
 makeUniqueDays();
+
