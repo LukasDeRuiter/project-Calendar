@@ -36,9 +36,7 @@ document.getElementById('currentDayID').innerHTML = new Date().toDateString();
 
 
 document.getElementById("test").addEventListener('click', function(){
-    console.log(date.getDay());
-    console.log(month);
-    console.log(lastDay);
+    console.log(chosenDayArray);
 })
 
 
@@ -50,10 +48,10 @@ for(let i = firstDayIndex; i > 0; i--){
 
 for(let i = 1; i <= lastDay; i++){
     if(i === new Date().getDate() && date.getMonth() === new Date().getMonth()){
-        days += `<div class="today">${i}</div>`;
+        days += `<div class="today" id="day${i}">${i}</div>`;
     }
     else{
-    days += `<div>${i}</div>`;
+    days += `<div id="day${i}">${i}</div>`;
     }
 }
 
@@ -74,3 +72,34 @@ document.getElementById('rightBtnID').addEventListener('click', function(){
 });
 
 renderCalenderPerMonth();
+
+let chosenDayArray = [];
+
+
+function makeUniqueDays(){
+    let yourYear = new Date();
+    console.log(yourYear.getFullYear());
+
+    yourYear.setMonth(0);
+    let lastDay = new Date(yourYear.getFullYear(), yourYear.getMonth() + 1, 0).getDate();
+    //let lastDay = new Date(date.getFullYear(), date.getMonth(), 0).getDate();
+for(let i = 0; i <= 11; i ++){ 
+    yourYear.setMonth(i);
+    lastDay = new Date(yourYear.getFullYear(), yourYear.getMonth() + 1, 0).getDate();
+    for(let j = 1; j <= lastDay; j++){
+    let day = {
+        month: i,
+        day: j,
+        title: "",
+        time: "",
+        description: '',
+    }
+    chosenDayArray.push(day);
+}
+
+
+console.log(lastDay);
+}
+}
+
+makeUniqueDays();
