@@ -51,7 +51,7 @@ for(let i = 1; i <= lastDay; i++){
         days += `<div class="today monthDays" id="day${i}">${i}</div>`;
     }
     else{
-    days += `<div class="monthDays" id="day${i}">${i}</div>`;
+    days += `<div class="monthDays" id="${i}">${i}</div>`;
     }
 }
 
@@ -64,6 +64,20 @@ document.querySelectorAll('.monthDays').forEach(function(theDayUserClicked){
     theDayUserClicked.addEventListener('click', function(){
         console.log(theDayUserClicked.id);
         console.log(date.getMonth());
+        yourDay();
+        function yourDay(){
+            for(let i = 0; i < chosenDayArray.length; i++){
+                if(chosenDayArray[i].month == date.getMonth() && chosenDayArray[i].theDay == theDayUserClicked.id){
+                    console.log(chosenDayArray[i]);
+                }
+                else{
+                    console.log('damn');
+                }
+            }
+        }
+    
+        //document.getElementById('').innerHTML = `${}`;
+        //document.getElementById('').innerHTML = `${}`;
     });
 });
 
@@ -86,7 +100,6 @@ let chosenDayArray = [];
 
 function makeUniqueDays(){
     let yourYear = new Date();
-    console.log(yourYear.getFullYear());
 
     yourYear.setMonth(0);
     let lastDay = new Date(yourYear.getFullYear(), yourYear.getMonth() + 1, 0).getDate();
@@ -97,18 +110,17 @@ for(let i = 0; i <= 11; i ++){
     for(let j = 1; j <= lastDay; j++){
     let day = {
         month: i,
-        day: j,
+        theDay: j,
         title: "",
         time: "",
         description: '',
     }
     chosenDayArray.push(day);
 }
-
-
-console.log(lastDay);
 }
 }
+
+
 
 makeUniqueDays();
 
