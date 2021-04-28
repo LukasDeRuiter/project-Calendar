@@ -1,5 +1,6 @@
 const date = new Date();
 
+
 const renderCalenderPerMonth = function(){
     date.setDate(1);
 
@@ -113,7 +114,7 @@ for(let i = 0; i <= 11; i ++){
         theDay: j,
         title: "",
         time: "",
-        description: '',
+        description: "",
     }
     chosenDayArray.push(day);
 }

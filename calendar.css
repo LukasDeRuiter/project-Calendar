@@ -114,3 +114,19 @@ html{
 .today{
     background-color: rgb(138, 39, 39);
 }
+
+
+.userInput{
+    width: 40rem;
+    height: 50rem;
+    background-color: rgb(58, 58, 58);
+    box-shadow: 0 0.5rem 3rem rgba(0,0,0, 0.4);
+}
+
+
+.theDayUserClicked{
+    width: 40rem;
+    height: 50rem;
+    background-color: rgb(58, 58, 58);
+    box-shadow: 0 0.5rem 3rem rgba(0,0,0, 0.4);
+}
