@@ -1,5 +1,5 @@
 const date = new Date();
-
+let _theDayUserClicked = "";
 
 const renderCalenderPerMonth = function(){
     date.setDate(1);
@@ -37,7 +37,7 @@ document.getElementById('currentDayID').innerHTML = new Date().toDateString();
 
 
 document.getElementById("test").addEventListener('click', function(){
-    console.log(chosenDayArray);
+    console.log(_theDayUserClicked);
 })
 
 
@@ -63,13 +63,31 @@ for(let i = 1; i <= nextDays; i++){
 
 document.querySelectorAll('.monthDays').forEach(function(theDayUserClicked){
     theDayUserClicked.addEventListener('click', function(){
-        console.log(theDayUserClicked.id);
-        console.log(date.getMonth());
+        resetDays();
+        function resetDays(){
+            let days = document.querySelectorAll('.monthDays');
+            for(let i = 0; i < days.length; i++){
+                days[i].style.border = "";
+            }
+        }
+        theDayUserClicked.style.border = "3px solid red";
         yourDay();
         function yourDay(){
             for(let i = 0; i < chosenDayArray.length; i++){
                 if(chosenDayArray[i].month == date.getMonth() && chosenDayArray[i].theDay == theDayUserClicked.id){
-                    console.log(chosenDayArray[i]);
+                    _theDayUserClicked = i;
+                    console.log(chosenDayArray[i]);  //add if statement here
+                    for(let j = 0; j < chosenDayArray[i].title.length; j++){
+                        let _eventTitle = document.createElement("h2");
+                        let _eventTime = document.createElement("h3");
+                        let _eventDescription = document.createElement("p");
+                        _eventTitle.innerHTML = `${chosenDayArray[i].title[j]}`;
+                        _eventTime.innerHTML = `${chosenDayArray[i].time[j]}`;
+                        _eventDescription.innerHTML = `${chosenDayArray[i].description[j]}`;
+                        document.getElementById('theDayUserClickedTextContainerID').appendChild(_eventTitle);
+                        document.getElementById('theDayUserClickedTextContainerID').appendChild(_eventTime);
+                        document.getElementById('theDayUserClickedTextContainerID').appendChild(_eventDescription);
+                    } 
                 }
                 else{
                     console.log('damn');
@@ -112,9 +130,9 @@ for(let i = 0; i <= 11; i ++){
     let day = {
         month: i,
         theDay: j,
-        title: "",
-        time: "",
-        description: "",
+        title: [],
+        time: [],
+        description: [],
     }
     chosenDayArray.push(day);
 }
@@ -132,4 +150,10 @@ document.getElementById('addNewEventID').addEventListener('click', function(){
 document.getElementById('eventSubmit').addEventListener('click', function(){
     document.getElementById('userInputContainerID').style.display = "none";
     document.getElementById('addNewEventID').style.display = "flex";
+    chosenDayArray[_theDayUserClicked].title.push(document.getElementById('eventTitle').value);
+    chosenDayArray[_theDayUserClicked].time.push(document.getElementById('eventTime').value);
+    chosenDayArray[_theDayUserClicked].description.push(document.getElementById('eventDescription').value);
+    document.getElementById('eventTitle').value = "";
+    document.getElementById('eventTime').value = "";
+    document.getElementById('eventDescription').value = "";
 })
