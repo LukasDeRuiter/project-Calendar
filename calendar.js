@@ -37,7 +37,8 @@ document.getElementById('currentDayID').innerHTML = new Date().toDateString();
 
 
 document.getElementById("test").addEventListener('click', function(){
-    console.log(_theDayUserClicked);
+    let alreadyMadeEvents = JSON.parse(localStorage.getItem("calenderEvents"));
+    chosenDayArray = alreadyMadeEvents;
 })
 
 
@@ -129,7 +130,6 @@ function makeUniqueDays(){
 
     yourYear.setMonth(0);
     let lastDay = new Date(yourYear.getFullYear(), yourYear.getMonth() + 1, 0).getDate();
-    //let lastDay = new Date(date.getFullYear(), date.getMonth(), 0).getDate();
 for(let i = 0; i <= 11; i ++){ 
     yourYear.setMonth(i);
     lastDay = new Date(yourYear.getFullYear(), yourYear.getMonth() + 1, 0).getDate();
@@ -163,4 +163,7 @@ document.getElementById('eventSubmit').addEventListener('click', function(){
     document.getElementById('eventTitle').value = "";
     document.getElementById('eventTime').value = "";
     document.getElementById('eventDescription').value = "";
+    localStorage.setItem('calenderEvents', JSON.stringify(chosenDayArray));
+    console.log('calenderEvents');
 })
+
