@@ -121,7 +121,15 @@ for(let i = 0; i <= 11; i ++){
 }
 }
 
-
-
 makeUniqueDays();
 
+
+document.getElementById('addNewEventID').addEventListener('click', function(){
+    addNewEventID.style.display = "none";
+    document.getElementById('userInputContainerID').style.display = "flex";
+})
+
+document.getElementById('eventSubmit').addEventListener('click', function(){
+    document.getElementById('userInputContainerID').style.display = "none";
+    document.getElementById('addNewEventID').style.display = "flex";
+})

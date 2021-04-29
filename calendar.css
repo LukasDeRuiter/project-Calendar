@@ -117,10 +117,25 @@ html{
 
 
 .userInput{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 40rem;
     height: 50rem;
     background-color: rgb(58, 58, 58);
     box-shadow: 0 0.5rem 3rem rgba(0,0,0, 0.4);
+}
+
+.userInputContainer{
+    display: none;
+    flex-direction: column;
+    width: 28rem;
+    height: 48rem;
+    background-color: red;
+}
+
+.eventLabel{
+    font-size: 2rem;
 }
 
 
@@ -130,3 +145,4 @@ html{
     background-color: rgb(58, 58, 58);
     box-shadow: 0 0.5rem 3rem rgba(0,0,0, 0.4);
 }
+
