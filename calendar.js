@@ -76,7 +76,8 @@ document.querySelectorAll('.monthDays').forEach(function(theDayUserClicked){
             for(let i = 0; i < chosenDayArray.length; i++){
                 if(chosenDayArray[i].month == date.getMonth() && chosenDayArray[i].theDay == theDayUserClicked.id){
                     _theDayUserClicked = i;
-                    console.log(chosenDayArray[i]);  //add if statement here
+                    removeAllText(document.getElementById('theDayUserClickedTextContainerID'));
+                    console.log(chosenDayArray[i]);
                     for(let j = 0; j < chosenDayArray[i].title.length; j++){
                         let _eventTitle = document.createElement("h2");
                         let _eventTime = document.createElement("h3");
@@ -100,6 +101,12 @@ document.querySelectorAll('.monthDays').forEach(function(theDayUserClicked){
     });
 });
 
+}
+
+function removeAllText(textContainer){
+    while(textContainer.firstChild){
+        textContainer.removeChild(textContainer.firstChild);
+    }
 }
 
 document.getElementById('leftBtnID').addEventListener('click', function(){
