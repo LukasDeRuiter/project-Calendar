@@ -13,7 +13,6 @@ function getLocalStorage(){
     }
 }
 
-getLocalStorage();
 
 const renderCalenderPerMonth = function(){
     date.setDate(1);
@@ -93,6 +92,7 @@ document.querySelectorAll('.monthDays').forEach(function(theDayUserClicked){
             }
         }
         theDayUserClicked.style.border = "3px solid red";
+
         yourDay();
         function yourDay(){
             for(let i = 0; i < chosenDayArray.length; i++){
@@ -119,6 +119,10 @@ document.querySelectorAll('.monthDays').forEach(function(theDayUserClicked){
                             chosenDayArray[i].description.splice([j], 1);
                             chosenDayArray[_theDayUserClicked].amountOfEvents -= 1;
                             localStorage.setItem('calenderEvents', JSON.stringify(chosenDayArray));
+                            for(let x = 0; x < chosenDayArray.length; x++){
+                                if(chosenDayArray[x].month == date.getMonth() && chosenDayArray[x].amountOfEvents == 0){
+                                    document.getElementById(`${chosenDayArray[x].theDay}`).style.color = "white";
+                                }}
                         })
 
                         document.getElementById('theDayUserClickedTextContainerID').appendChild(_eventTitle);
@@ -156,7 +160,8 @@ document.getElementById('rightBtnID').addEventListener('click', function(){
     renderCalenderPerMonth();
 });
 
-renderCalenderPerMonth();
+
+
 
 
 function makeUniqueDays(){
@@ -182,6 +187,8 @@ for(let i = 0; i <= 11; i ++){
 }
 
 makeUniqueDays();
+getLocalStorage();
+renderCalenderPerMonth();
 
 
 document.getElementById('addNewEventID').addEventListener('click', function(){
