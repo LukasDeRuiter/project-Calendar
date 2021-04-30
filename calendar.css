@@ -159,6 +159,7 @@ html{
     width: 28rem;
     height: 48rem;
     background-color: red;
+    box-shadow: 0 0.5rem 3rem rgba(0,0,0, 0.4);
 }
 
 .eventLabel{
@@ -175,18 +176,32 @@ html{
 
 .theDayUserClickedTextContainer{
     display: flex;
+    align-items: center;
     flex-direction: column;
     overflow-x: hidden;
     overflow-y: scroll;
 }
 
 .deleteBtn{
+ width: 25rem;
+}
+
+.titles{
 
 }
 
-.eventIndicator{
-    width: 4px;
-    height: 4px;
-    background-color: blue;
+.times{
 
+}
+
+.descriptions{
+
+}
+
+.containers{
+    background-color:rgb(138, 39, 39);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 10rem;
 }

@@ -1,6 +1,7 @@
 const date = new Date();
 let chosenDayArray = [];
 let _theDayUserClicked = "";
+let dayEventWillBeAddedTo;
 
 
 function getLocalStorage(){
@@ -92,51 +93,10 @@ document.querySelectorAll('.monthDays').forEach(function(theDayUserClicked){
             }
         }
         theDayUserClicked.style.border = "3px solid red";
+        dayEventWillBeAddedTo = theDayUserClicked.id;
+        console.log(dayEventWillBeAddedTo);
 
-        yourDay();
-        function yourDay(){
-            for(let i = 0; i < chosenDayArray.length; i++){
-                if(chosenDayArray[i].month == date.getMonth() && chosenDayArray[i].theDay == theDayUserClicked.id){
-                    _theDayUserClicked = i;
-                    removeAllText(document.getElementById('theDayUserClickedTextContainerID'));
-                    console.log(chosenDayArray[i]);
-                    for(let j = 0; j < chosenDayArray[i].title.length; j++){
-                        let _eventTitle = document.createElement("h2");
-                        let _eventTime = document.createElement("h3");
-                        let _eventDescription = document.createElement("p");
-                        let _removeEventBtn = document.createElement("button");
-                        _removeEventBtn.classList.add(".deleteBtn");
-                        _eventTitle.innerHTML = `${chosenDayArray[i].title[j]}`;
-                        _eventTime.innerHTML = `${chosenDayArray[i].time[j]}`;
-                        _eventDescription.innerHTML = `${chosenDayArray[i].description[j]}`;
-                        _removeEventBtn.addEventListener('click', function(){
-                            _eventTitle.remove();
-                            _eventTime.remove();
-                            _eventDescription.remove();
-                            _removeEventBtn.remove();
-                            chosenDayArray[i].title.splice([j], 1);
-                            chosenDayArray[i].time.splice([j], 1);
-                            chosenDayArray[i].description.splice([j], 1);
-                            chosenDayArray[_theDayUserClicked].amountOfEvents -= 1;
-                            localStorage.setItem('calenderEvents', JSON.stringify(chosenDayArray));
-                            for(let x = 0; x < chosenDayArray.length; x++){
-                                if(chosenDayArray[x].month == date.getMonth() && chosenDayArray[x].amountOfEvents == 0){
-                                    document.getElementById(`${chosenDayArray[x].theDay}`).style.color = "white";
-                                }}
-                        })
-
-                        document.getElementById('theDayUserClickedTextContainerID').appendChild(_eventTitle);
-                        document.getElementById('theDayUserClickedTextContainerID').appendChild(_eventTime);
-                        document.getElementById('theDayUserClickedTextContainerID').appendChild(_eventDescription);
-                        document.getElementById('theDayUserClickedTextContainerID').appendChild(_removeEventBtn);
-                    } 
-                }
-                else{
-                    console.log('damn');
-                }
-            }
-        }
-    
+        yourDay(theDayUserClicked.id);
         //document.getElementById('').innerHTML = `${}`;
         //document.getElementById('').innerHTML = `${}`;
     });
@@ -206,6 +166,7 @@ document.getElementById('eventSubmit').addEventListener('click', function(){
     if(chosenDayArray[_theDayUserClicked].amountOfEvents >= 1){
         document.getElementById(`${chosenDayArray[_theDayUserClicked].theDay}`).style.color = "green";
     }
+    yourDay(dayEventWillBeAddedTo);
     document.getElementById('eventTitle').value = "";
     document.getElementById('eventTime').value = "";
     document.getElementById('eventDescription').value = "";
@@ -213,3 +174,52 @@ document.getElementById('eventSubmit').addEventListener('click', function(){
     
 })
 
+
+function yourDay(theDayYouNeed){
+    for(let i = 0; i < chosenDayArray.length; i++){
+        if(chosenDayArray[i].month == date.getMonth() && chosenDayArray[i].theDay == theDayYouNeed){
+            _theDayUserClicked = i;
+            removeAllText(document.getElementById('theDayUserClickedTextContainerID'));
+            console.log(chosenDayArray[i]);
+            for(let j = 0; j < chosenDayArray[i].title.length; j++){
+                let _eventContainer = document.createElement("div");
+                let _eventTitle = document.createElement("h2");
+                let _eventTime = document.createElement("h3");
+                let _eventDescription = document.createElement("p");
+                let _removeEventBtn = document.createElement("button");
+                _eventContainer.classList.add("containers");
+                _removeEventBtn.classList.add("deleteBtn");
+                _eventTitle.classList.add("titles");
+                _eventTime.classList.add("times");
+                _eventDescription.classList.add("descriptions");
+                _eventTitle.innerHTML = `${chosenDayArray[i].title[j]}`;
+                _eventTime.innerHTML = `${chosenDayArray[i].time[j]}`;
+                _eventDescription.innerHTML = `${chosenDayArray[i].description[j]}`;
+                _removeEventBtn.addEventListener('click', function(){
+                    _eventTitle.remove();
+                    _eventTime.remove();
+                    _eventDescription.remove();
+                    _removeEventBtn.remove();
+                    _eventContainer.remove();
+                    chosenDayArray[i].title.splice([j], 1);
+                    chosenDayArray[i].time.splice([j], 1);
+                    chosenDayArray[i].description.splice([j], 1);
+                    chosenDayArray[i].amountOfEvents -= 1;
+                    localStorage.setItem('calenderEvents', JSON.stringify(chosenDayArray));
+                    for(let x = 0; x < chosenDayArray.length; x++){
+                        if(chosenDayArray[x].month == date.getMonth() && chosenDayArray[x].amountOfEvents == 0){
+                            document.getElementById(`${chosenDayArray[x].theDay}`).style.color = "white";
+                        }}
+                })
+                document.getElementById('theDayUserClickedTextContainerID').appendChild(_eventContainer);
+                _eventContainer.appendChild(_eventTitle);
+                _eventContainer.appendChild(_eventTime);
+                _eventContainer.appendChild(_eventDescription);
+                _eventContainer.appendChild(_removeEventBtn);
+            } 
+        }
+        else{
+            console.log('damn');
+        }
+    }
+}
