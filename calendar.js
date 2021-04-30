@@ -1,5 +1,19 @@
 const date = new Date();
+let chosenDayArray = [];
 let _theDayUserClicked = "";
+
+
+function getLocalStorage(){
+    if("calenderEvents" in localStorage){
+        let alreadyMadeEvents = JSON.parse(localStorage.getItem("calenderEvents"));
+        chosenDayArray = alreadyMadeEvents;
+    }
+    else{
+        console.log("No localStorage detected");
+    }
+}
+
+getLocalStorage();
 
 const renderCalenderPerMonth = function(){
     date.setDate(1);
@@ -54,6 +68,7 @@ for(let i = 1; i <= lastDay; i++){
     }
     else{
     days += `<div class="monthDays" id="${i}">${i}</div>`;
+    
     }
 }
 
@@ -61,6 +76,12 @@ for(let i = 1; i <= nextDays; i++){
     days += `<div class="next-days">${i}</div>`;
     monthDays.innerHTML = days;
 }
+
+for(let x = 0; x < chosenDayArray.length; x++){
+    if(chosenDayArray[x].month == date.getMonth() && chosenDayArray[x].amountOfEvents >= 1){
+        document.getElementById(`${chosenDayArray[x].theDay}`).style.color = "green";
+    }}
+
 
 document.querySelectorAll('.monthDays').forEach(function(theDayUserClicked){
     theDayUserClicked.addEventListener('click', function(){
@@ -96,6 +117,7 @@ document.querySelectorAll('.monthDays').forEach(function(theDayUserClicked){
                             chosenDayArray[i].title.splice([j], 1);
                             chosenDayArray[i].time.splice([j], 1);
                             chosenDayArray[i].description.splice([j], 1);
+                            chosenDayArray[_theDayUserClicked].amountOfEvents -= 1;
                             localStorage.setItem('calenderEvents', JSON.stringify(chosenDayArray));
                         })
 
@@ -136,8 +158,6 @@ document.getElementById('rightBtnID').addEventListener('click', function(){
 
 renderCalenderPerMonth();
 
-let chosenDayArray = [];
-
 
 function makeUniqueDays(){
     let yourYear = new Date();
@@ -176,10 +196,8 @@ document.getElementById('eventSubmit').addEventListener('click', function(){
     chosenDayArray[_theDayUserClicked].time.push(document.getElementById('eventTime').value);
     chosenDayArray[_theDayUserClicked].description.push(document.getElementById('eventDescription').value);
     chosenDayArray[_theDayUserClicked].amountOfEvents += 1;
-    for(let i = 1; i <= chosenDayArray[_theDayUserClicked].amountOfEvents; i++){
-        let eventMarker = document.createElement("div");
-        eventMarker.classList.add("eventIndicator");
-        document.getElementById(`${chosenDayArray[_theDayUserClicked].theDay}`).appendChild(eventMarker);
+    if(chosenDayArray[_theDayUserClicked].amountOfEvents >= 1){
+        document.getElementById(`${chosenDayArray[_theDayUserClicked].theDay}`).style.color = "green";
     }
     document.getElementById('eventTitle').value = "";
     document.getElementById('eventTime').value = "";
