@@ -85,7 +85,7 @@ html{
     padding: 0.2rem;
 }
 
-.days div{
+.monthDays{
     font-size: 1.4rem;
     margin: 0.3rem;
     width: calc(40.2rem / 7);
@@ -97,21 +97,48 @@ html{
     transition: background-color 0.2s;
 }
 
-.days div:hover:not(.today){
+.monthDays:hover:not(.today){
     background-color: #262626;
     border: 0.2rem solid #777;
     cursor: pointer;
 }
 
 .prev-days{
+    font-size: 1.4rem;
+    margin: 0.3rem;
+    width: calc(40.2rem / 7);
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+    transition: background-color 0.2s;
     opacity: 0.5;
 }
 
 .next-days{
+    font-size: 1.4rem;
+    margin: 0.3rem;
+    width: calc(40.2rem / 7);
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+    transition: background-color 0.2s;
     opacity: 0.5;
 }
 
 .today{
+    font-size: 1.4rem;
+    margin: 0.3rem;
+    width: calc(40.2rem / 7);
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+    transition: background-color 0.2s;
     background-color: rgb(138, 39, 39);
 }
 
@@ -154,5 +181,12 @@ html{
 }
 
 .deleteBtn{
-    
+
+}
+
+.eventIndicator{
+    width: 4px;
+    height: 4px;
+    background-color: blue;
+
 }

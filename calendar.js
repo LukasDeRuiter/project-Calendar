@@ -73,7 +73,6 @@ document.querySelectorAll('.monthDays').forEach(function(theDayUserClicked){
         }
         theDayUserClicked.style.border = "3px solid red";
         yourDay();
-        let eventCounter = 0;
         function yourDay(){
             for(let i = 0; i < chosenDayArray.length; i++){
                 if(chosenDayArray[i].month == date.getMonth() && chosenDayArray[i].theDay == theDayUserClicked.id){
@@ -155,6 +154,7 @@ for(let i = 0; i <= 11; i ++){
         title: [],
         time: [],
         description: [],
+        amountOfEvents: 0,
     }
     chosenDayArray.push(day);
 }
@@ -175,10 +175,16 @@ document.getElementById('eventSubmit').addEventListener('click', function(){
     chosenDayArray[_theDayUserClicked].title.push(document.getElementById('eventTitle').value);
     chosenDayArray[_theDayUserClicked].time.push(document.getElementById('eventTime').value);
     chosenDayArray[_theDayUserClicked].description.push(document.getElementById('eventDescription').value);
+    chosenDayArray[_theDayUserClicked].amountOfEvents += 1;
+    for(let i = 1; i <= chosenDayArray[_theDayUserClicked].amountOfEvents; i++){
+        let eventMarker = document.createElement("div");
+        eventMarker.classList.add("eventIndicator");
+        document.getElementById(`${chosenDayArray[_theDayUserClicked].theDay}`).appendChild(eventMarker);
+    }
     document.getElementById('eventTitle').value = "";
     document.getElementById('eventTime').value = "";
     document.getElementById('eventDescription').value = "";
     localStorage.setItem('calenderEvents', JSON.stringify(chosenDayArray));
-    console.log('calenderEvents');
+    
 })
 
