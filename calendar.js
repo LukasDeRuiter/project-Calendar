@@ -50,7 +50,7 @@ for(let i = firstDayIndex; i > 0; i--){
 
 for(let i = 1; i <= lastDay; i++){
     if(i === new Date().getDate() && date.getMonth() === new Date().getMonth()){
-        days += `<div class="today monthDays" id="day${i}">${i}</div>`;
+        days += `<div class="today monthDays" id="${i}">${i}</div>`;
     }
     else{
     days += `<div class="monthDays" id="${i}">${i}</div>`;
@@ -73,6 +73,7 @@ document.querySelectorAll('.monthDays').forEach(function(theDayUserClicked){
         }
         theDayUserClicked.style.border = "3px solid red";
         yourDay();
+        let eventCounter = 0;
         function yourDay(){
             for(let i = 0; i < chosenDayArray.length; i++){
                 if(chosenDayArray[i].month == date.getMonth() && chosenDayArray[i].theDay == theDayUserClicked.id){
@@ -83,12 +84,26 @@ document.querySelectorAll('.monthDays').forEach(function(theDayUserClicked){
                         let _eventTitle = document.createElement("h2");
                         let _eventTime = document.createElement("h3");
                         let _eventDescription = document.createElement("p");
+                        let _removeEventBtn = document.createElement("button");
+                        _removeEventBtn.classList.add(".deleteBtn");
                         _eventTitle.innerHTML = `${chosenDayArray[i].title[j]}`;
                         _eventTime.innerHTML = `${chosenDayArray[i].time[j]}`;
                         _eventDescription.innerHTML = `${chosenDayArray[i].description[j]}`;
+                        _removeEventBtn.addEventListener('click', function(){
+                            _eventTitle.remove();
+                            _eventTime.remove();
+                            _eventDescription.remove();
+                            _removeEventBtn.remove();
+                            chosenDayArray[i].title.splice([j], 1);
+                            chosenDayArray[i].time.splice([j], 1);
+                            chosenDayArray[i].description.splice([j], 1);
+                            localStorage.setItem('calenderEvents', JSON.stringify(chosenDayArray));
+                        })
+
                         document.getElementById('theDayUserClickedTextContainerID').appendChild(_eventTitle);
                         document.getElementById('theDayUserClickedTextContainerID').appendChild(_eventTime);
                         document.getElementById('theDayUserClickedTextContainerID').appendChild(_eventDescription);
+                        document.getElementById('theDayUserClickedTextContainerID').appendChild(_removeEventBtn);
                     } 
                 }
                 else{
