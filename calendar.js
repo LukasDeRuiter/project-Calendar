@@ -49,13 +49,6 @@ document.getElementById('currentMonthID').innerHTML = `${allTheMonthsArray[month
 
 document.getElementById('currentDayID').innerHTML = new Date().toDateString();
 
-
-document.getElementById("test").addEventListener('click', function(){
-    let alreadyMadeEvents = JSON.parse(localStorage.getItem("calenderEvents"));
-    chosenDayArray = alreadyMadeEvents;
-})
-
-
 let days = "";
 
 for(let i = firstDayIndex; i > 0; i--){
@@ -92,7 +85,7 @@ document.querySelectorAll('.monthDays').forEach(function(theDayUserClicked){
                 days[i].style.border = "";
             }
         }
-        theDayUserClicked.style.border = "3px solid red";
+        theDayUserClicked.style.border = "3px solid var(--calenderRed)";
         dayEventWillBeAddedTo = theDayUserClicked.id;
         console.log(dayEventWillBeAddedTo);
 
@@ -152,8 +145,13 @@ renderCalenderPerMonth();
 
 
 document.getElementById('addNewEventID').addEventListener('click', function(){
+    if(_theDayUserClicked == ""){
+        alert("Please select a day first!");
+    }
+    else{
     addNewEventID.style.display = "none";
     document.getElementById('userInputContainerID').style.display = "flex";
+    }
 })
 
 document.getElementById('eventSubmit').addEventListener('click', function(){
@@ -229,3 +227,28 @@ function yourDay(theDayYouNeed){
         }
     }
 }
+
+
+document.getElementById("redID").addEventListener('click', function(){
+    document.documentElement.style.setProperty('--calenderRed', 'rgb(138, 39, 39)');
+})
+
+document.getElementById("blueID").addEventListener('click', function(){
+    document.documentElement.style.setProperty('--calenderRed', 'rgb(39, 79, 138)');
+})
+
+document.getElementById("purpleID").addEventListener('click', function(){
+    document.documentElement.style.setProperty('--calenderRed', 'rgb(98, 39, 138)');
+})
+
+document.getElementById("yellowID").addEventListener('click', function(){
+    document.documentElement.style.setProperty('--calenderRed', 'rgb(138, 128, 39)');
+})
+
+document.getElementById("orangeID").addEventListener('click', function(){
+    document.documentElement.style.setProperty('--calenderRed', 'rgb(138, 84, 39)');
+})
+
+document.getElementById("tealID").addEventListener('click', function(){
+    document.documentElement.style.setProperty('--calenderRed', 'rgb(39, 131, 138)');
+})

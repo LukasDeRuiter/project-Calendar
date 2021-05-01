@@ -3,21 +3,36 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Quicksand", sans-serif;
+
+}
+
+:root{
+    --calenderRed: rgb(138, 39, 39);
+    --calenderGreen: rgb(39, 138, 39);
 }
 
 html{
     font-size: 62.5%;
 }
 
-.calContainer{
+
+.calContainer2{
     width: 100vw;
     height: 100vh;
     background-color: rgb(27, 27, 27);
     color: #eee;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
+.calContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 .calendar{
     width: 45rem;
@@ -29,7 +44,7 @@ html{
 .month{
     width: 100%;
     height: 12rem;
-    background-color:rgb(141, 8, 8);
+    background-color: var(--calenderRed);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -139,7 +154,7 @@ html{
     align-items: center;
     text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
     transition: background-color 0.2s;
-    background-color: rgb(138, 39, 39);
+    background-color: var(--calenderRed);
 }
 
 
@@ -160,7 +175,7 @@ html{
     justify-content: center;
     width: 28rem;
     height: 48rem;
-    background-color: transparent;
+    background-color: rgb(29, 29, 29);
     box-shadow: 0 0.5rem 3rem rgba(0,0,0, 0.4);
 }
 
@@ -170,16 +185,16 @@ html{
     font-size: 4rem;
     color: white;
     border: 0.5rem solid white;
-    background-color: rgb(138, 39, 39);
+    background-color: var(--calenderRed);
     text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
-    box-shadow: 0 0 40px rgb(138, 39, 39), 0 0 80px rgb(138, 39, 39);
+    box-shadow: 0 0 40px var(--calenderRed), 0 0 80px var(--calenderRed);
     transition: all 0.2s ease-in;
 }
 
 .newEventBtn:hover{
     border: 1rem solid white;
-    background-color: rgb(27, 163, 61);
-    box-shadow: 0 0 40px rgb(27, 163, 61), 0 0 80px rgb(27, 163, 61), 0 0 120px rgb(27, 163, 61);
+    background-color: var(--calenderGreen);
+    box-shadow: 0 0 40px var(--calenderGreen), 0 0 80px var(--calenderGreen), 0 0 120px var(--calenderGreen);
 }
 .eventLabel{
     font-size: 2rem;
@@ -198,8 +213,8 @@ html{
     color: white;
     border: 0.5rem solid white;
     margin-bottom: 2rem; 
-    background-color: rgb(138, 39, 39);
-    box-shadow: 0 0 40px rgb(138, 39, 39);
+    background-color: var(--calenderRed);
+    box-shadow: 0 0 40px var(--calenderRed);
     text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
     transition: all 0.2s ease-in;
 }
@@ -235,16 +250,16 @@ html{
     height: 4rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
-    background-color: rgb(138, 39, 39);
-    box-shadow: 0 0 40px rgb(138, 39, 39);
+    background-color: var(--calenderRed);
+    box-shadow: 0 0 40px var(--calenderRed);
     text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
     transition: all 0.2s ease-in;
 }
 
 .deleteBtn:hover{
     border: 0.4rem solid white;
-    background-color: rgb(27, 163, 61);
-    box-shadow: 0 0 40px rgb(27, 163, 61);
+    background-color: var(--calenderGreen);
+    box-shadow: 0 0 40px var(--calenderGreen);
 }
 
 .titles{
@@ -273,4 +288,40 @@ html{
 
 }
 
+.colorSelect{
+    width: 45rem;
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
 
+.color{
+    border: 3px solid rgb(12, 12, 12);
+    height: 5rem;
+    width: 5rem; 
+}
+
+.red{
+    background-color: rgb(138, 39, 39);
+}
+
+.blue{
+    background-color: rgb(39, 79, 138);
+}
+
+.yellow{
+    background-color: rgb(138, 128, 39);
+}
+
+.purple{
+    background-color: rgb(98, 39, 138);
+}
+
+.orange{
+    background-color: rgb(138, 84, 39);
+}
+
+.teal{
+    background-color: rgb(39, 131, 138);
+}
