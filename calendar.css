@@ -156,14 +156,58 @@ html{
 .userInputContainer{
     display: none;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 28rem;
     height: 48rem;
-    background-color: red;
+    background-color: transparent;
     box-shadow: 0 0.5rem 3rem rgba(0,0,0, 0.4);
 }
 
+.newEventBtn{
+    width: 25rem;
+    height: 17rem;
+    font-size: 4rem;
+    color: white;
+    border: 0.5rem solid white;
+    background-color: rgb(138, 39, 39);
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 40px rgb(138, 39, 39), 0 0 80px rgb(138, 39, 39);
+    transition: all 0.2s ease-in;
+}
+
+.newEventBtn:hover{
+    border: 1rem solid white;
+    background-color: rgb(27, 163, 61);
+    box-shadow: 0 0 40px rgb(27, 163, 61), 0 0 80px rgb(27, 163, 61), 0 0 120px rgb(27, 163, 61);
+}
 .eventLabel{
     font-size: 2rem;
+}
+
+.eventInput{
+    margin-bottom: 6rem;
+    font-size: 2rem;
+    width: 24rem;
+    height: 6rem;
+}
+
+.submitBtn{
+    width: 24rem;
+    height: 6rem;
+    color: white;
+    border: 0.5rem solid white;
+    margin-bottom: 2rem; 
+    background-color: rgb(138, 39, 39);
+    box-shadow: 0 0 40px rgb(138, 39, 39);
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+    transition: all 0.2s ease-in;
+}
+
+.submitBtn:hover{
+    border: 1rem solid white;
+    background-color: rgb(27, 163, 61);
+    box-shadow: 0 0 40px rgb(27, 163, 61);
 }
 
 
@@ -175,6 +219,8 @@ html{
 }
 
 .theDayUserClickedTextContainer{
+    height: 100%;
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -183,7 +229,22 @@ html{
 }
 
 .deleteBtn{
- width: 25rem;
+    color: white;
+    border: 0.2rem solid white;
+    width: 10rem;
+    height: 4rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: rgb(138, 39, 39);
+    box-shadow: 0 0 40px rgb(138, 39, 39);
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+    transition: all 0.2s ease-in;
+}
+
+.deleteBtn:hover{
+    border: 0.4rem solid white;
+    background-color: rgb(27, 163, 61);
+    box-shadow: 0 0 40px rgb(27, 163, 61);
 }
 
 .titles{
@@ -199,9 +260,17 @@ html{
 }
 
 .containers{
-    background-color:rgb(138, 39, 39);
+    background-color: rgb(29, 29, 29);
+    color: white;
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 10rem;
+    margin-top: 0.5rem;
+    margin-bottom: 5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 1rem;
+
 }
+
+

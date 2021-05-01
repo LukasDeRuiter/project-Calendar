@@ -196,6 +196,7 @@ function yourDay(theDayYouNeed){
                 _eventTitle.classList.add("titles");
                 _eventTime.classList.add("times");
                 _eventDescription.classList.add("descriptions");
+                _removeEventBtn.innerHTML = "Delete event";
                 _eventTitle.innerHTML = `${chosenDayArray[i].title[j]}`;
                 _eventTime.innerHTML = `${chosenDayArray[i].time[j]}`;
                 _eventDescription.innerHTML = `${chosenDayArray[i].description[j]}`;
