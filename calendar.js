@@ -157,6 +157,10 @@ document.getElementById('addNewEventID').addEventListener('click', function(){
 })
 
 document.getElementById('eventSubmit').addEventListener('click', function(){
+    if(document.getElementById('eventTitle').value == "" || document.getElementById('eventTime').value == "" || document.getElementById('eventDescription').value == ""){
+        alert("Please fill in all options!");
+    }
+    else{
     document.getElementById('userInputContainerID').style.display = "none";
     document.getElementById('addNewEventID').style.display = "flex";
     chosenDayArray[_theDayUserClicked].title.push(document.getElementById('eventTitle').value);
@@ -171,7 +175,7 @@ document.getElementById('eventSubmit').addEventListener('click', function(){
     document.getElementById('eventTime').value = "";
     document.getElementById('eventDescription').value = "";
     localStorage.setItem('calenderEvents', JSON.stringify(chosenDayArray));
-    
+}
 })
 
 
@@ -196,6 +200,7 @@ function yourDay(theDayYouNeed){
                 _eventTime.innerHTML = `${chosenDayArray[i].time[j]}`;
                 _eventDescription.innerHTML = `${chosenDayArray[i].description[j]}`;
                 _removeEventBtn.addEventListener('click', function(){
+                    if(confirm("Would you like to delete this event from your calendar?")){
                     _eventTitle.remove();
                     _eventTime.remove();
                     _eventDescription.remove();
@@ -209,7 +214,7 @@ function yourDay(theDayYouNeed){
                     for(let x = 0; x < chosenDayArray.length; x++){
                         if(chosenDayArray[x].month == date.getMonth() && chosenDayArray[x].amountOfEvents == 0){
                             document.getElementById(`${chosenDayArray[x].theDay}`).style.color = "white";
-                        }}
+                        }}}
                 })
                 document.getElementById('theDayUserClickedTextContainerID').appendChild(_eventContainer);
                 _eventContainer.appendChild(_eventTitle);
