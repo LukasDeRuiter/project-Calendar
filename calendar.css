@@ -1,11 +1,11 @@
+/* Used by all text in the calendar */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Quicksand", sans-serif;
-
 }
-
+/* Here we give two variables, the first one can be changed to fit what the user wants  */
 :root{
     --calenderRed: rgb(138, 39, 39);
     --calenderGreen: rgb(39, 138, 39);
@@ -15,7 +15,7 @@ html{
     font-size: 62.5%;
 }
 
-
+/* the main calendar */
 .calContainer2{
     width: 100vw;
     height: 100vh;
@@ -33,7 +33,7 @@ html{
     align-items: center;
 }
 
-
+/* Displayed year, month and the days */
 .calendar{
     width: 45rem;
     height: 52rem;
@@ -157,7 +157,7 @@ html{
     background-color: var(--calenderRed);
 }
 
-
+/* This is the left side of the calendar used to accept user input */
 .userInput{
     display: flex;
     align-items: center;
@@ -225,7 +225,7 @@ html{
     box-shadow: 0 0 40px rgb(27, 163, 61);
 }
 
-
+/* This is the right side of the calendar where the events are displayed */
 .theDayUserClicked{
     width: 40rem;
     height: 50rem;
@@ -274,6 +274,8 @@ html{
 
 }
 
+
+/* The unique event containers */
 .containers{
     background-color: rgb(29, 29, 29);
     color: white;
@@ -285,9 +287,10 @@ html{
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     padding-top: 1rem;
-
 }
 
+
+/* This is the color selection div that is seen at the bottom of the calendar, used to set a prefered color */
 .colorSelect{
     width: 45rem;
     height: 6rem;

@@ -1,9 +1,19 @@
-const date = new Date();
-let chosenDayArray = [];
-let _theDayUserClicked = "";
-let dayEventWillBeAddedTo;
+/* Hello and welcome to my project-calendar code! 
+
+In this code, I have created a calendar (year-based) that the user can interact with by flipping through the months, selecting a day and adding/removing events from the chosen day.
+Feel free to have a look around here!
+
+Kind regards,
+Lukas de Ruiter */
 
 
+const date = new Date(); // This is the current date. It is used in the later functions to determine which year it is and how many days each month should have.
+let chosenDayArray = []; // This array stores all the unique dayObjects. Each time the user adds or subtracts something, this array is pushed to the localStorage
+let _theDayUserClicked = ""; // This variable is used to determine which day the user is viewing;
+let dayEventWillBeAddedTo; //id of the day the user clicked
+
+
+/* we use this function to check if there is any previous activity by the user. If this is true, then we use the localstorage array! */
 function getLocalStorage(){
     if("calenderEvents" in localStorage){
         let alreadyMadeEvents = JSON.parse(localStorage.getItem("calenderEvents"));
@@ -15,6 +25,8 @@ function getLocalStorage(){
 }
 
 
+/* This long function is used 3 times: when opening the calendar and when going to the next or previous month. Here we determine how many days the chosen month has and create
+a number of divs based on that */
 const renderCalenderPerMonth = function(){
     date.setDate(1);
 
@@ -44,9 +56,7 @@ const allTheMonthsArray = [
     "December",
 ];
 
-
 document.getElementById('currentMonthID').innerHTML = `${allTheMonthsArray[month]}`;
-
 document.getElementById('currentDayID').innerHTML = new Date().toDateString();
 
 let days = "";
@@ -87,11 +97,8 @@ document.querySelectorAll('.monthDays').forEach(function(theDayUserClicked){
         }
         theDayUserClicked.style.border = "3px solid var(--calenderRed)";
         dayEventWillBeAddedTo = theDayUserClicked.id;
-        console.log(dayEventWillBeAddedTo);
 
         yourDay(theDayUserClicked.id);
-        //document.getElementById('').innerHTML = `${}`;
-        //document.getElementById('').innerHTML = `${}`;
     });
 });
 
@@ -103,11 +110,13 @@ function removeAllText(textContainer){
     }
 }
 
+/* Here we set the month when swapping through them and redo the previous function! */
 document.getElementById('leftBtnID').addEventListener('click', function(){
     date.setMonth(date.getMonth() - 1);
     renderCalenderPerMonth();
 });
 
+/* Here we set the month when swapping through them and redo the previous function! */
 document.getElementById('rightBtnID').addEventListener('click', function(){
     date.setMonth(date.getMonth() + 1);
     renderCalenderPerMonth();
@@ -116,7 +125,7 @@ document.getElementById('rightBtnID').addEventListener('click', function(){
 
 
 
-
+/* Here I create an array of unique objects, equal to 365 days of the year. This is used to store events and gets pushed to the localStorage later on. */
 function makeUniqueDays(){
     let yourYear = new Date();
 
@@ -139,11 +148,12 @@ for(let i = 0; i <= 11; i ++){
 }
 }
 
+/* Here we invoke the main functions. First, we make the ObjectArray, then we see it this should be overwritten by the localstorage, lastly we create the calendar day divs*/
 makeUniqueDays();
 getLocalStorage();
 renderCalenderPerMonth();
 
-
+/* The user get to add new events here, that are stored in the ObjectArray ChosenDayArray */
 document.getElementById('addNewEventID').addEventListener('click', function(){
     if(_theDayUserClicked == ""){
         alert("Please select a day first!");
@@ -153,7 +163,7 @@ document.getElementById('addNewEventID').addEventListener('click', function(){
     document.getElementById('userInputContainerID').style.display = "flex";
     }
 })
-
+/* part 2 of making an event */
 document.getElementById('eventSubmit').addEventListener('click', function(){
     if(document.getElementById('eventTitle').value == "" || document.getElementById('eventTime').value == "" || document.getElementById('eventDescription').value == ""){
         alert("Please fill in all options!");
@@ -176,7 +186,8 @@ document.getElementById('eventSubmit').addEventListener('click', function(){
 }
 })
 
-
+/* Here we check what day the user clicked and then browse through the ObjectArray to match it with one of the days saved. Then, we .innerHTML the keyvalues of that day on the
+right side of the calendar */
 function yourDay(theDayYouNeed){
     for(let i = 0; i < chosenDayArray.length; i++){
         if(chosenDayArray[i].month == date.getMonth() && chosenDayArray[i].theDay == theDayYouNeed){
@@ -223,12 +234,12 @@ function yourDay(theDayYouNeed){
             } 
         }
         else{
-            console.log('damn');
+            console.log('no match');
         }
     }
 }
 
-
+/* These are the selectors for the differents colors that can be chosen by the user */
 document.getElementById("redID").addEventListener('click', function(){
     document.documentElement.style.setProperty('--calenderRed', 'rgb(138, 39, 39)');
 })
